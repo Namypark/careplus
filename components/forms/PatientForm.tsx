@@ -19,6 +19,8 @@ import CustomForm from "../CustomForm";
 import SubmitButton from "../SubmitButton";
 import { UserValidationForm } from "@/lib/validation";
 import { useRouter } from "next/navigation";
+import { createUser } from "@/lib/actions/patient.actions";
+
 export enum FormFieldType {
   INPUT = "input",
   CHECKBOX = "checkbox",
@@ -48,13 +50,14 @@ const PatientForm = () => {
   async function onSubmit({ name, email, phone }: z.infer<typeof formSchema>) {
     setIsLoading(true);
     try {
-      // const userData = {
-      //   name,
-      //   email,
-      //   phone,
-      // };
-      // await user =  createUser(userData);
-      // if(user) router.push(`patient/${user.$id}/register`)
+      const userData = {
+        name,
+        email,
+        phone,
+      };
+      const user = await createUser(userData);
+      if (user) router.push(`patients/${user.$id}/register`);
+      console.log(user);
     } catch (error) {
       console.log(error);
     }
@@ -78,7 +81,7 @@ const PatientForm = () => {
           fieldType={FormFieldType.INPUT}
           label="Full Name"
           iconSrc="/assets/icons/user.svg"
-          name="fullname"
+          name="name"
           placeholder="john doe"
           iconAlt="user"
         />

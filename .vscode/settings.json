@@ -1,12 +1,13 @@
 {
-    "cSpell.words": [
-        "careplus",
-        "clsx",
-        "datepicker",
-        "fullname",
-        "hookform",
-        "tailwindcss"
-    ],
-    "diffEditor.useInlineViewWhenSpaceIsLimited": true,
-    "editor.inlineCompletionsAccessibilityVerbose": true
+  "cSpell.words": [
+    "appwrite",
+    "careplus",
+    "clsx",
+    "datepicker",
+    "fullname",
+    "hookform",
+    "tailwindcss"
+  ],
+  "diffEditor.useInlineViewWhenSpaceIsLimited": true,
+  "editor.inlineCompletionsAccessibilityVerbose": true
 }

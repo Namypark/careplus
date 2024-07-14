@@ -100,7 +100,7 @@
   }
 
   .checkbox-label {
-    @apply cursor-pointer text-sm font-medium text-dark-700 peer-disabled: cursor-not-allowed peer-disabled:opacity-70 md:leading-none;
+    @apply cursor-pointer text-sm font-medium text-dark-700 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 md:leading-none;
   }
 
   /* ==== File Upload */
@@ -211,7 +211,7 @@
   }
 
   .shad-combobox-item {
-    @apply data-[disabled=true]: pointer-events-none data-[disabled=true]:opacity-50 !important;
+    @apply data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 !important;
   }
 
   .shad-combobox-trigger {
