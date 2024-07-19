@@ -92,7 +92,6 @@ declare interface patientType<S, D, B, G> {
 }
 declare interface AppointmentFormTypes<S, D> {
   primaryPhysician: S;
-  cancellationReason: S;
   reason: S;
   notes: S;
   schedule: D;
@@ -145,7 +144,6 @@ export const patientDefaultValues: patientType<string, Date, boolean, Gender> =
 
 export const AppointmentDefaultValues: AppointmentFormTypes<string, Date> = {
   primaryPhysician: "",
-  cancellationReason: "",
   reason: "",
   notes: "",
   schedule: new Date(Date.now()),

@@ -168,6 +168,9 @@
   .text-14-medium {
     @apply text-[14px] leading-[18px] font-medium;
   }
+  .text-18-medium {
+    @apply text-[18px] leading-[24px] font-medium;
+  }
 
   .text-14-regular {
     @apply text-[14px] leading-[18px] font-normal;

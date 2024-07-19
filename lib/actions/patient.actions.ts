@@ -98,11 +98,11 @@ export const registerPatient = async ({
 export const getPatient = async (userId: string) => {
   try {
     const response = await databases.listDocuments(
-      process.env.DATABASE_ID!,
+      process.env.NEXT_PUBLIC_DATABASE_ID!,
       process.env.PATIENT_COLLECTION_ID!,
       [Query.equal("userId", userId)]
     );
-    console.log(parseStringify(response.documents[0]));
+    // console.log(parseStringify(response.documents[0]));
 
     return parseStringify(response.documents[0]);
   } catch (error) {

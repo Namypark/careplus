@@ -10,7 +10,6 @@ const NewAppointment = async ({ params: { userId } }: SearchParamProps) => {
   const patient = await getPatient(userId);
   return (
     <div className="flex h-screen max-h-screen">
-      <h2>Custom OTP</h2>
       <section className="remove-scrollbar container my-auto">
         <div className="sub-container max-w-[860px] flex-1 justify-between">
           <Image
