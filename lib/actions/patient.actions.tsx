@@ -74,8 +74,8 @@ export const registerPatient = async ({
       );
     }
     const newPatient = await databases.createDocument(
-      process.env.DATABASE_ID!,
-      process.env.PATIENT_COLLECTION_ID!,
+      process.env.NEXT_PUBLIC_DATABASE_ID!,
+      process.env.NEXT_PUBLIC_PATIENT_COLLECTION_ID!,
       ID.unique(),
       {
         identificationDocumentId: file?.$id || null,
@@ -99,7 +99,7 @@ export const getPatient = async (userId: string) => {
   try {
     const response = await databases.listDocuments(
       process.env.NEXT_PUBLIC_DATABASE_ID!,
-      process.env.PATIENT_COLLECTION_ID!,
+      process.env.NEXT_PUBLIC_PATIENT_COLLECTION_ID!,
       [Query.equal("userId", userId)]
     );
     // console.log(parseStringify(response.documents[0]));

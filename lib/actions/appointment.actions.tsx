@@ -6,7 +6,7 @@ import {
 } from "@/types/index";
 import { Client, Users, Storage, Databases } from "node-appwrite";
 import { Query, ID } from "node-appwrite";
-import { parseStringify } from "../utils";
+import { formatDateTime, parseStringify } from "../utils";
 
 const {
   NEXT_PUBLIC_PROJECT_ID: PROJECT_ID,
@@ -24,6 +24,7 @@ const {
 import { Status } from "@/types";
 import { Appointment } from "@/types/appwrite";
 import { revalidatePath } from "next/cache";
+import { messaging } from "../appwrite.conf";
 const client = new Client();
 client
   .setEndpoint(process.env.NEXT_PUBLIC_ENDPOINT!)
@@ -135,11 +136,34 @@ export const updateAppointment = async ({
       appointmentId,
       appointment
     );
-    console.log(updatedAppointment);
-    // if (!updatedAppointment) {
+
+    if (!updatedAppointment) {
+      throw new Error("Appointment not found");
+    }
+
     //TODO SMS notification
-    // }
+    const smsMessage = `Hi, it's Charles. ${
+      type === "schedule"
+        ? `Your appointment has been scheduled for ${
+            formatDateTime(appointment.schedule!).dateTime
+          } with Dr.${appointment.primaryPhysician}.`
+        : `Your appointment has been cancelled, Reason ${appointment.cancellationReason}`
+    }`;
+    await sendSMSNotifications(userId, smsMessage);
     return parseStringify(updatedAppointment);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const sendSMSNotifications = async (userId: string, content: string) => {
+  try {
+    const message = await messaging.createSms(
+      ID.unique(),
+      content,
+      [],
+      [userId]
+    );
   } catch (error) {
     console.log(error);
   }

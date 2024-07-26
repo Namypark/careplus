@@ -6,9 +6,13 @@ import PatientForm from "@/components/forms/PatientForm";
 import RegistrationForm from "@/components/forms/RegistrationForm";
 import { SearchParamProps } from "@/types";
 import { getUser } from "@/lib/actions/patient.actions";
+import * as Sentry from "@sentry/nextjs";
 
 const Register = async ({ params: { userId } }: SearchParamProps) => {
   const user = await getUser(userId);
+  // Add 'jane' to a set
+  // used for tracking the number of users that viewed a page.
+  Sentry.metrics.set("user_view_register", user.name);
   return (
     <div className="flex h-screen max-h-screen">
       <section className="remove-scrollbar container">

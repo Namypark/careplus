@@ -1,4 +1,4 @@
-export const GenderOptions: string[] = ["male", "female", "other"];
+export const GenderOptions: string[] = ["Male", "Female", "Other"];
 
 import { Gender } from "@/types";
 import { boolean, string } from "zod";
