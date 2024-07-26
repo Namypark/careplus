@@ -6,7 +6,7 @@ import Link from "next/link";
 import { SearchParamProps } from "@/types";
 import { getAppointmentDetails } from "@/lib/actions/appointment.actions";
 import { useSearchParams } from "next/navigation";
-import { Doctor, Doctors } from "@/constants";
+import { Doctor, Doctors } from "@/components/constants";
 import { string } from "zod";
 import { Button } from "@/components/ui/button";
 

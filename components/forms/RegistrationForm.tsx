@@ -31,7 +31,7 @@ import {
   GenderOptions,
   IdentificationTypes,
   patientDefaultValues,
-} from "@/constants";
+} from "@/components/constants";
 import { SelectItem } from "@/components/ui/select";
 import FileUploader from "../FileUploader";
 

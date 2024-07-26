@@ -30,7 +30,7 @@ import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { FormFieldType } from "./forms/PatientForm";
 import { useState } from "react";
-import { Doctor } from "@/constants";
+import { Doctor } from "@/components/constants";
 
 interface customProps {
   control: Control<any>;

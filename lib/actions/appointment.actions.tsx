@@ -2,6 +2,7 @@ import {
   CreateAppointmentParams,
   CreateUserParams,
   RegisterUserParams,
+  UpdateAppointmentParams,
 } from "@/types/index";
 import { Client, Users, Storage, Databases } from "node-appwrite";
 import { Query, ID } from "node-appwrite";
@@ -19,6 +20,10 @@ const {
 } = process.env;
 
 // import { users } from "@/lib/appwrite.conf";
+
+import { Status } from "@/types";
+import { Appointment } from "@/types/appwrite";
+import { revalidatePath } from "next/cache";
 const client = new Client();
 client
   .setEndpoint(process.env.NEXT_PUBLIC_ENDPOINT!)
@@ -28,7 +33,13 @@ client
 const users = new Users(client);
 const storage = new Storage(client);
 const databases = new Databases(client);
-
+declare interface appointmentsType {
+  documents: Appointment[];
+  scheduled: number;
+  pending: number;
+  cancelled: number;
+  totalCount: number;
+}
 /****
  * @createDocument is the way we fill up the values of that particular table in this case it is th appointment table
  * it takes in the @DATABASE_ID @APPOINTMENT_COLLECTION_ID @DOCUMENT_ID
@@ -68,5 +79,68 @@ export const getAppointmentDetails = async (documentId: string) => {
     return parseStringify(response);
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const getRecentAppointmentList = async () => {
+  const statusCounter = {
+    scheduled: 0,
+    pending: 0,
+    cancelled: 0,
+  };
+  try {
+    const response = await databases.listDocuments(
+      process.env.NEXT_PUBLIC_DATABASE_ID!,
+      process.env.NEXT_PUBLIC_APPOINTMENT_COLLECTION_ID!,
+      [Query.orderDesc("$createdAt")]
+    );
+    const counts = (response.documents as Appointment[]).reduce(
+      (accumulator, appointment) => {
+        if (appointment.status === "scheduled") accumulator.scheduled += 1;
+        else if (appointment.status === "pending") accumulator.pending += 1;
+        else if (appointment.status === "cancelled") accumulator.cancelled += 1;
+
+        return accumulator;
+      },
+      statusCounter
+    );
+
+    const data = {
+      totalCount: response.total,
+      ...counts,
+      documents: response.documents,
+    };
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+// result.forEach((item: CreateAppointmentParams) => {
+//   if (item.status in statusCounter) {
+//     statusCounter[item.status]++;
+//   }
+// });
+
+export const updateAppointment = async ({
+  appointmentId,
+  userId,
+  appointment,
+  type,
+}: UpdateAppointmentParams) => {
+  try {
+    const updatedAppointment = await databases.updateDocument(
+      process.env.NEXT_PUBLIC_DATABASE_ID!,
+      process.env.NEXT_PUBLIC_APPOINTMENT_COLLECTION_ID!,
+      appointmentId,
+      appointment
+    );
+    console.log(updatedAppointment);
+    // if (!updatedAppointment) {
+    //TODO SMS notification
+    // }
+    return parseStringify(updatedAppointment);
+  } catch (error) {
+    console.log(error);
   }
 };
