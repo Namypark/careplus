@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Simple Patient Management System
 
-## Getting Started
+## Features
 
-First, run the development server:
+- Patient Registration and Management: Add, update, and manage patient information.
+- Appointment Scheduling: Schedule and manage patient appointments.
+- Notification System: Send SMS notifications to patients using Twilio.
+
+## Run Locally
+
+Clone the project
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+ git clone https://github.com/yourusername/patient-management-system.git
+cd patient-management-system
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3.      Set up environment variables:
+    Create a .env.local file in the root directory and add your environment variables:
 
-## Learn More
+```
+NEXT_PUBLIC_DATABASE_ID=your_appwrite_database_id
+NEXT_PUBLIC_APPOINTMENT_COLLECTION_ID=your_appwrite_collection_id
+NEXT_PUBLIC_APPWRITE_ENDPOINT=your_appwrite_endpoint
+NEXT_PUBLIC_APPWRITE_PROJECT_ID=your_appwrite_project_id
+TWILIO_ACCOUNT_SID=your_twilio_account_sid
+TWILIO_AUTH_TOKEN=your_twilio_auth_token
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Run the developement server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+  npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Acknowledgements
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    •	Next.js
+    •	TypeScript
+    •	Tailwind CSS
+    •	shadcn
+    •	Appwrite
+    •	Twilio
