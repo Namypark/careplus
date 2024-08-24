@@ -1,8 +1,6 @@
 import clsx from "clsx";
 import React from "react";
 import Image from "next/image";
-import { getRecentAppointmentList } from "@/lib/actions/appointment.actions";
-import { Appointment } from "@/types/appwrite";
 
 declare interface cards {
   type: "appointments" | "pending" | "cancelled";

@@ -1,5 +1,5 @@
 // appwrite.conf.ts
-"use server";
+
 import { Client, Databases, Storage, Messaging, Users } from "node-appwrite";
 
 export const {
@@ -13,15 +13,19 @@ export const {
   NEXT_PUBLIC_ENDPOINT,
 } = process.env;
 
-if (!NEXT_PUBLIC_ENDPOINT || !NEXT_PUBLIC_PROJECT_ID || !NEXT_PUBLIC_API_KEY) {
+if (
+  !process.env.NEXT_PUBLIC_ENDPOINT ||
+  !process.env.NEXT_PUBLIC_PROJECT_ID ||
+  !process.env.NEXT_PUBLIC_API_KEY
+) {
   throw new Error("Appwrite environment variables are not set");
 }
 
 const client = new Client();
 client
-  .setEndpoint(NEXT_PUBLIC_ENDPOINT!)
-  .setProject(NEXT_PUBLIC_PROJECT_ID!)
-  .setKey(NEXT_PUBLIC_API_KEY!);
+  .setEndpoint(process.env.NEXT_PUBLIC_ENDPOINT!)
+  .setProject(process.env.NEXT_PUBLIC_PROJECT_ID!)
+  .setKey(process.env.NEXT_PUBLIC_API_KEY!);
 
 export const databases = new Databases(client);
 export const storage = new Storage(client);

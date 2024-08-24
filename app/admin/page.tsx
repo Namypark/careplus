@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import CustomCards from "@/components/CustomCards";
@@ -69,7 +68,7 @@ const Admin = async () => {
           />
         </section>
         {/* <DataTable data={appointments?.documents} columns={columns} /> */}
-        <DataTable columns={columns} data={appointments?.documents} />
+        <DataTable columns={columns!} data={appointments?.documents!} />
       </main>
     </div>
   );
