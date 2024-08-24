@@ -1,21 +1,19 @@
-import "@/styles/globals.css"
+import "@/styles/globals.css";
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 
-
 const fontSans = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['300', '400','500','600','700'],
-  variable: "--font-sans"
-})
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-sans",
+});
 
-
-export const Meta: Metadata = {
+const Meta: Metadata = {
   title: "CarePlus",
-  description: "A healthcare system"
-}
+  description: "A healthcare system",
+};
 
 export default function RootLayout({
   children,
@@ -24,15 +22,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn("min-h-screen bg-dark-300 font-sans antialiased", fontSans.variable)}>
-      <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
+      <body
+        className={cn(
+          "min-h-screen bg-dark-300 font-sans antialiased",
+          fontSans.variable
+        )}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
