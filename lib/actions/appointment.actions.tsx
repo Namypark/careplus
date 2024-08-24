@@ -142,7 +142,7 @@ export const updateAppointment = async ({
     }
 
     //TODO SMS notification
-    const smsMessage = `Hi, it's Charles. ${
+    const smsMessage = `Hi, it's the Dev. ${
       type === "schedule"
         ? `Your appointment has been scheduled for ${
             formatDateTime(appointment.schedule!).dateTime
