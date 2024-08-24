@@ -52,7 +52,7 @@ const Success = async ({
           been successfully submitted!
         </h2>
         <p className="text-18-medium text-gray-400 mb-12">
-          We'll be in touch shortly to confirm
+          We&apos;ll be in touch shortly to confirm
         </p>
       </section>
       <section className="request-details flex-1">
